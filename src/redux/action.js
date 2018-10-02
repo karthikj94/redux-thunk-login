@@ -1,6 +1,7 @@
 import axios from 'axios';
 import setAuthorizationToken from '../utils/setAuthorizationToken';
 //import jwt from 'jsonwebtoken';
+import { history } from '../history';
 
 const SET_LOGIN_PENDING = 'SET_LOGIN_PENDING';
 const SET_LOGIN_SUCCESS = 'SET_LOGIN_SUCCESS';
@@ -28,7 +29,7 @@ export function login(email, password) {
           setAuthorizationToken(response.data.token);
           //console.log(jwt.decode(response.data.token));
           // - redirect to the route '/feature'
-          this.props.history.push('/logout');
+          history.push('/logout');
 
       }).catch((error) => {
           // if request is bad...

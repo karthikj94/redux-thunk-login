@@ -5,8 +5,9 @@ import Logout from './components/Logout';
 import { Provider } from 'react-redux';
 import store from './redux/store';
 import setAuthorizationToken from './utils/setAuthorizationToken';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { Router, Switch, Route } from 'react-router-dom';
 import requireAuth from './utils/requireAuth';
+import { history } from './history'
 
 if(localStorage.token){
   setAuthorizationToken(localStorage.token);
@@ -17,12 +18,12 @@ else{
 
 ReactDOM.render(
   <Provider store={store}>
-    <BrowserRouter>
+    <Router history={history}>
       <Switch>
         <Route exact path='/' component={LoginForm} />
         <Route path='/logout' component={requireAuth(Logout)} />
       </Switch>  
-    </BrowserRouter>
+    </Router>
   </Provider>,
   document.getElementById('root')
 );
